@@ -1,21 +1,7 @@
 GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
-//SEC_LEVEL_GREEN = code green
-//SEC_LEVEL_BLUE = code blue
-//SEC_LEVEL_RED = code red
-//SEC_LEVEL_DELTA = code delta
-
-//config.alert_desc_blue_downto
 
 /proc/set_security_level(level)
-	switch(level)
-		if("green")
-			level = SEC_LEVEL_GREEN
-		if("blue")
-			level = SEC_LEVEL_BLUE
-		if("red")
-			level = SEC_LEVEL_RED
-		if("delta")
-			level = SEC_LEVEL_DELTA
+	level = isnum(level) ? level : seclevel2num(level)
 
 	//Will not be announced if you try to set to the same level as it already is
 	if(level >= SEC_LEVEL_GREEN && level <= SEC_LEVEL_DELTA && level != GLOB.security_level)
