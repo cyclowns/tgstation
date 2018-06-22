@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(air)
 	var/list/excited_groups = list()
 	var/list/active_turfs = list()
 	var/list/hotspots = list()
-	var/list/networks = list()
+	var/list/pipenets = list()
 	var/list/obj/machinery/atmos_machinery = list()
 	var/list/pipe_init_dirs_cache = list()
 
@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(air)
 	msg += "AT:[active_turfs.len]|"
 	msg += "EG:[excited_groups.len]|"
 	msg += "HS:[hotspots.len]|"
-	msg += "PN:[networks.len]|"
+	msg += "PN:[pipenets.len]|"
 	msg += "HP:[high_pressure_delta.len]|"
 	msg += "AS:[active_super_conductivity.len]|"
 	msg += "AT/MS:[round((cost ? active_turfs.len/cost : 0),0.1)]"
@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/process_pipenets(resumed = 0)
 	if (!resumed)
-		src.currentrun = networks.Copy()
+		src.currentrun = pipenets.Copy()
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
@@ -150,7 +150,7 @@ SUBSYSTEM_DEF(air)
 		if(thing)
 			thing.process()
 		else
-			networks.Remove(thing)
+			pipenets.Remove(thing)
 		if(MC_TICK_CHECK)
 			return
 
