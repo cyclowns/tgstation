@@ -419,7 +419,6 @@ GLOBAL_LIST_INIT(gaslist_cache, init_gaslist_cache())
 		break
 	if(!possible)
 		return
-	reaction_results = new
 	var/temp = temperature
 	var/ener = THERMAL_ENERGY(src)
 

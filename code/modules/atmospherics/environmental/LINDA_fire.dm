@@ -89,6 +89,7 @@
 		if(!just_spawned)
 			volume = location.air.reaction_results["fire"]*FIRE_GROWTH_RATE
 			temperature = location.air.temperature
+			location.air.reaction_results["fire"] = 0
 	else
 		var/datum/gas_mixture/affected = location.air.remove_ratio(volume/location.air.volume)
 		affected.temperature = temperature
